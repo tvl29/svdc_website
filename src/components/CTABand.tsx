@@ -1,6 +1,7 @@
 import { CalendarCheck, Phone } from "lucide-react";
 import { practice } from "../data/content";
 import FieldMotif from "./FieldMotif";
+import Reveal from "./Reveal";
 
 export default function CTABand() {
   return (
@@ -25,6 +26,7 @@ export default function CTABand() {
         tone="sage"
       />
 
+      <Reveal direction="up">
       <div className="relative mx-auto max-w-3xl px-5 sm:px-8 text-center">
         <span className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-[12px] font-medium tracking-[0.15em] uppercase text-[var(--color-lime-mid)]">
           Opening November 2026
@@ -57,6 +59,7 @@ export default function CTABand() {
           </a>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

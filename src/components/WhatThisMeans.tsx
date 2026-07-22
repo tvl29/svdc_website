@@ -1,4 +1,5 @@
 import { whatThisMeans } from "../data/content";
+import Reveal from "./Reveal";
 
 export default function WhatThisMeans() {
   return (
@@ -8,15 +9,17 @@ export default function WhatThisMeans() {
           What this means for you
         </p>
         <div className="mt-10 grid gap-8 sm:grid-cols-3">
-          {whatThisMeans.map((item) => (
-            <div key={item.title} className="text-center sm:text-left">
-              <h3 className="font-[var(--font-display)] text-xl text-[var(--color-ink)]">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-warm-gray)]">
-                {item.description}
-              </p>
-            </div>
+          {whatThisMeans.map((item, i) => (
+            <Reveal key={item.title} direction="up" delay={i * 100}>
+              <div className="text-center sm:text-left">
+                <h3 className="font-[var(--font-display)] text-xl text-[var(--color-ink)]">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-warm-gray)]">
+                  {item.description}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

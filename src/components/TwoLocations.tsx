@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { locations, practice } from "../data/content";
 import { locationAssets } from "../data/assets";
 import FieldMotif from "./FieldMotif";
+import Reveal from "./Reveal";
 
 export default function TwoLocations() {
   return (
@@ -24,6 +25,7 @@ export default function TwoLocations() {
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {/* ---- John Street ---- */}
+          <Reveal direction="left">
           <div className="group rounded-3xl bg-white border border-[var(--color-sage)] overflow-hidden shadow-[0_1px_2px_rgba(74,68,56,0.06)] hover:shadow-[0_24px_48px_-16px_rgba(74,68,56,0.18)] hover:-translate-y-1 transition-all duration-300">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
@@ -85,8 +87,10 @@ export default function TwoLocations() {
               </div>
             </div>
           </div>
+          </Reveal>
 
           {/* ---- Main Street ---- */}
+          <Reveal direction="right">
           <div className="group rounded-3xl bg-white border border-[var(--color-sage)] overflow-hidden shadow-[0_1px_2px_rgba(74,68,56,0.06)] hover:shadow-[0_24px_48px_-16px_rgba(74,68,56,0.18)] hover:-translate-y-1 transition-all duration-300">
             {/* No confirmed exterior photo yet — an intentional, elegant
                 placeholder (not a real photo) rather than an empty box.
@@ -139,6 +143,7 @@ export default function TwoLocations() {
               </div>
             </div>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>

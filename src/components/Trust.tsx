@@ -1,5 +1,6 @@
 import { Star, Quote, CalendarCheck2 } from "lucide-react";
 import { featuredReview, practice } from "../data/content";
+import Reveal from "./Reveal";
 
 export default function Trust() {
   return (
@@ -9,6 +10,7 @@ export default function Trust() {
           Trusted since {practice.since}
         </p>
 
+        <Reveal direction="up">
         <div className="mt-8 relative rounded-3xl bg-white border border-[var(--color-sage)] shadow-[0_1px_2px_rgba(74,68,56,0.05)] px-8 py-12 sm:px-16 sm:py-16 text-center">
           <Quote
             size={36}
@@ -41,6 +43,7 @@ export default function Trust() {
             </span>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -19,6 +19,7 @@ import {
 import { locationAssets, heroCoverAsset } from "../data/assets";
 import FieldMotif from "../components/FieldMotif";
 import OfficeGallery from "../components/OfficeGallery";
+import Reveal from "../components/Reveal";
 
 export default function NewOfficeLanding() {
   return (
@@ -86,6 +87,7 @@ export default function NewOfficeLanding() {
           <p className="text-[13px] font-semibold tracking-[0.15em] uppercase text-[var(--color-olive)] mb-6">
             A first look inside
           </p>
+          <Reveal direction="up">
           <OfficeGallery
             images={[
               {
@@ -118,6 +120,7 @@ export default function NewOfficeLanding() {
               },
             ]}
           />
+          </Reveal>
           <p className="mt-4 text-[13px] text-[var(--color-warm-gray)]">
             Architectural renderings — final finishes may vary slightly from
             what's shown here. Tap a thumbnail to bring it into view.
@@ -145,11 +148,12 @@ export default function NewOfficeLanding() {
                 icon: HeartHandshake,
                 items: sameAcrossBoth,
               },
-            ].map((col) => {
+            ].map((col, i) => {
               const Icon = col.icon;
+              const direction = i === 0 ? "left" : i === 2 ? "right" : "up";
               return (
+                <Reveal key={col.label} direction={direction}>
                 <div
-                  key={col.label}
                   className="rounded-3xl bg-white p-8 sm:p-9 border border-transparent hover:border-[var(--color-olive)]/15 shadow-[0_1px_2px_rgba(74,68,56,0.05)] hover:shadow-[0_20px_40px_-18px_rgba(74,68,56,0.16)] hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="flex items-center justify-center w-11 h-11 rounded-full bg-[var(--color-sage)] text-[var(--color-olive)]">
@@ -171,6 +175,7 @@ export default function NewOfficeLanding() {
                     ))}
                   </ul>
                 </div>
+                </Reveal>
               );
             })}
           </div>
@@ -201,6 +206,7 @@ export default function NewOfficeLanding() {
           tone="sage"
         />
 
+        <Reveal direction="up">
         <div className="relative mx-auto max-w-2xl px-5 sm:px-8">
           <div className="flex justify-center gap-0.5 text-[var(--color-lime-mid)]">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -232,6 +238,7 @@ export default function NewOfficeLanding() {
             </Link>
           </div>
         </div>
+        </Reveal>
       </section>
     </main>
   );
