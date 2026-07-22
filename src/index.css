@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- SVDC brand palette (from logo — do not introduce colors outside this set) ---- */
+  --color-olive: #5B8C00;        /* primary anchor / brand accent */
+  --color-olive-deep: #2F4A0E;   /* one grounding dark band (CTA / footer) */
+  --color-lime: #7AB800;         /* small accent only */
+  --color-lime-mid: #8FBF2A;     /* small accent only */
+  --color-ink: #4A4438;          /* headings / body text */
+  --color-sage: #F0F7E6;         /* soft background */
+  --color-warm-gray: #6B6354;    /* secondary text / neutral */
+  --color-off-white: #FCFBF7;    /* neutral dominant background */
+
+  /* ---- Type ---- */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Manrope", "Helvetica Neue", sans-serif;
+
+  /* ---- Motion ---- */
+  --ease-signature: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-off-white);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Signature "swaying field" ambient strokes — reused as a quiet divider motif */
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.2deg) translateY(0); }
+  50% { transform: rotate(1.2deg) translateY(-2px); }
+}
+
+.field-stroke {
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-stroke {
+    animation: none;
+  }
+}
+
+/* Hero page-load reveal sequence */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-\[fadeIn"] { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* Hero eyebrow shimmer sweep */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-pill {
+  background-image: linear-gradient(
+    100deg,
+    rgba(255,255,255,0.15) 0%,
+    rgba(255,255,255,0.15) 35%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0.15) 65%,
+    rgba(255,255,255,0.15) 100%
+  );
+  background-size: 250% 100%;
+  animation: shimmer 3.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-pill { animation: none; background-image: none; }
+}
