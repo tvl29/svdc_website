@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import { practice } from "../data/content";
 import { heroAssets } from "../data/assets";
@@ -72,12 +73,12 @@ export default function Hero() {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 animate-[fadeIn_0.8s_ease-out_0.45s_both]">
-              <a
-                href="/new-office"
+              <Link
+                to="/new-office"
                 className="rounded-full bg-[var(--color-olive)] text-white px-6 py-3.5 text-[15px] font-semibold text-center hover:bg-[var(--color-lime)] transition-colors"
               >
                 Explore the new office →
-              </a>
+              </Link>
               <a
                 href={practice.bookingUrl}
                 target="_blank"

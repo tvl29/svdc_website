@@ -1,5 +1,6 @@
 import { Phone, MapPin } from "lucide-react";
 import { locations, practice } from "../data/content";
+import { withBase } from "../lib/paths";
 
 // lucide-react (this project's pinned version) doesn't ship brand icons —
 // small inline SVGs instead of pulling in a whole extra icon package.
@@ -20,12 +21,16 @@ function InstagramIcon() {
   );
 }
 
+// These four are pages that don't exist yet (see HANDOFF_NOTES.md) — once
+// built, add matching <Route>s in App.tsx and these can become <Link>s.
+// For now they're withBase()'d so they at least don't drop the GitHub
+// Pages subpath if clicked.
 const quickLinks = [
   { label: "Book a visit", href: practice.bookingUrl, external: true },
-  { label: "Patient forms", href: "/patient-forms" },
-  { label: "Dental Club", href: "/dental-club" },
-  { label: "Make a payment", href: "/payment" },
-  { label: "Privacy policy", href: "/privacy" },
+  { label: "Patient forms", href: withBase("patient-forms") },
+  { label: "Dental Club", href: withBase("dental-club") },
+  { label: "Make a payment", href: withBase("payment") },
+  { label: "Privacy policy", href: withBase("privacy") },
 ];
 
 export default function Footer() {

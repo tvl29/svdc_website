@@ -3,13 +3,18 @@ import { Link } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { practice } from "../data/content";
 import { brandAssets } from "../data/assets";
+import { withBase } from "../lib/paths";
 
+// "route: true" items use React Router's <Link> (client-side nav, respects
+// the app's basename automatically). Hash anchors stay plain <a> tags but
+// get withBase() so they don't drop the GitHub Pages subpath when clicked
+// from a page other than the homepage.
 const navLinks = [
-  { label: "Two Locations", href: "/#locations" },
-  { label: "Services", href: "/#services" },
-  { label: "New Office", href: "/new-office" },
-  { label: "Reviews", href: "/#trust" },
-  { label: "Contact", href: "/#footer" },
+  { label: "Two Locations", href: withBase("#locations") },
+  { label: "Services", href: withBase("#services") },
+  { label: "New Office", to: "/new-office" },
+  { label: "Reviews", href: withBase("#trust") },
+  { label: "Contact", href: withBase("#footer") },
 ];
 
 export default function Header() {
@@ -31,15 +36,25 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-[var(--color-warm-gray)] hover:text-[var(--color-olive)] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.to ? (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  className="text-sm font-medium text-[var(--color-warm-gray)] hover:text-[var(--color-olive)] transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-[var(--color-warm-gray)] hover:text-[var(--color-olive)] transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
@@ -66,25 +81,64 @@ export default function Header() {
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            <span
+              className={`inline-flex transition-transform duration-300 ease-out ${
+                open ? "rotate-90" : "rotate-0"
+              }`}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </span>
           </button>
         </div>
       </div>
 
-      {open && (
-        <div className="lg:hidden border-t border-[var(--color-sage)] bg-[var(--color-off-white)]">
+      {/* Mobile menu — animates open/closed via a grid-rows trick (0fr to 1fr)
+          so the height transition is smooth without measuring pixel heights
+          in JS. Always mounted (not conditionally rendered) so the closing
+          transition can actually play. Nav items cascade in with a small
+          stagger for a bit of polish; everything collapses to an instant
+          snap under prefers-reduced-motion via the global rule in index.css. */}
+      <div
+        className={`lg:hidden grid overflow-hidden bg-[var(--color-off-white)] border-t border-[var(--color-sage)] transition-[grid-template-rows] duration-300 ease-out ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
           <nav className="flex flex-col px-5 py-4 gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="py-2.5 text-[15px] font-medium text-[var(--color-ink)]"
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="flex items-center gap-3 pt-3 mt-2 border-t border-[var(--color-sage)]">
+            {navLinks.map((link, i) => {
+              const itemClasses = `py-2.5 text-[15px] font-medium text-[var(--color-ink)] transition-all duration-300 ease-out ${
+                open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+              }`;
+              const itemStyle = { transitionDelay: open ? `${i * 40}ms` : "0ms" };
+
+              return link.to ? (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  onClick={() => setOpen(false)}
+                  className={itemClasses}
+                  style={itemStyle}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={itemClasses}
+                  style={itemStyle}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+            <div
+              className={`flex items-center gap-3 pt-3 mt-2 border-t border-[var(--color-sage)] transition-all duration-300 ease-out ${
+                open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+              }`}
+              style={{ transitionDelay: open ? `${navLinks.length * 40}ms` : "0ms" }}
+            >
               <a
                 href={practice.phoneHref}
                 className="flex items-center gap-1.5 text-sm font-semibold text-[var(--color-ink)]"
@@ -103,7 +157,7 @@ export default function Header() {
             </div>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }

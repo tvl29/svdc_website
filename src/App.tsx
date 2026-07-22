@@ -25,7 +25,11 @@ function Home() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    // basename tells React Router about the GitHub Pages subpath
+    // (BASE_URL is "/" in dev, "/svdc_website/" in the production build) —
+    // without this, every <Link> navigates relative to the domain root and
+    // drops the subpath once deployed.
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AnnouncementRibbon />
       <Header />
       <Routes>

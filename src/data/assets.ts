@@ -16,9 +16,7 @@
 // therefore the deploy path, changes.
 // ---------------------------------------------------------------------------
 
-function withBase(path: string): string {
-  return `${import.meta.env.BASE_URL}${path}`;
-}
+import { withBase } from "../lib/paths";
 
 export const heroAssets = {
   video: withBase("assets/hero-video.mp4"),

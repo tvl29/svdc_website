@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Star,
   MapPin,
@@ -222,13 +223,13 @@ export default function NewOfficeLanding() {
               <CalendarCheck size={17} strokeWidth={2} />
               Book an appointment
             </a>
-            <a
-              href="/"
+            <Link
+              to="/"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 text-white px-7 py-3.5 text-[15px] font-semibold hover:bg-white/10 hover:border-white/60 hover:-translate-y-0.5 transition-all duration-300"
             >
               <ArrowLeft size={16} strokeWidth={2} />
               Back to homepage
-            </a>
+            </Link>
           </div>
         </div>
       </section>

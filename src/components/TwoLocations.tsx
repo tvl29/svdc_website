@@ -1,4 +1,5 @@
 import { MapPin, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { locations, practice } from "../data/content";
 import { locationAssets } from "../data/assets";
 import FieldMotif from "./FieldMotif";
@@ -64,13 +65,13 @@ export default function TwoLocations() {
               </div>
 
               <div className="mt-7 flex flex-wrap gap-3">
-                <a
-                  href="/new-office"
+                <Link
+                  to="/new-office"
                   className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-olive)] text-white px-5 py-2.5 text-sm font-semibold hover:bg-[var(--color-olive-deep)] transition-colors"
                 >
                   See the new office
                   <ArrowUpRight size={15} />
-                </a>
+                </Link>
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                     locations.johnStreet.mapQuery
