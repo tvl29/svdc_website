@@ -26,7 +26,13 @@ export default function TwoLocations() {
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {/* ---- John Street ---- */}
           <Reveal direction="left">
-          <div className="group rounded-3xl bg-white border border-[var(--color-sage)] overflow-hidden shadow-[0_1px_2px_rgba(74,68,56,0.06)] hover:shadow-[0_24px_48px_-16px_rgba(74,68,56,0.18)] hover:-translate-y-1 transition-all duration-300">
+          <div
+            className="group relative rounded-3xl border border-[var(--color-sage)] overflow-hidden shadow-[0_1px_2px_rgba(74,68,56,0.06)] hover:shadow-[0_28px_56px_-24px_rgba(74,68,56,0.28)] hover:-translate-y-1.5 transition-all duration-300"
+            style={{
+              background:
+                "linear-gradient(160deg, #FFFFFF 0%, #FFFFFF 65%, var(--color-sage) 180%)",
+            }}
+          >
             <div className="relative aspect-[16/10] overflow-hidden">
               <img
                 src={locationAssets.johnStreetReceptionDesk}
@@ -49,21 +55,39 @@ export default function TwoLocations() {
               </p>
             </div>
 
-            <div className="p-8 sm:p-9">
+            {/* Thin brand accent bar — sits at the seam between photo and
+                content, reveals on hover. Same language as the Trust card
+                and Services cards. */}
+            <div
+              className="h-1 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--color-olive), var(--color-lime-mid))",
+              }}
+              aria-hidden="true"
+            />
+
+            <div className="relative p-8 sm:p-9">
               <h3 className="font-[var(--font-display)] text-2xl">
                 {locations.johnStreet.label}
               </h3>
               <p className="mt-1 text-[15px] font-medium text-[var(--color-olive)]">
                 {locations.johnStreet.role}
               </p>
-              <div className="mt-5 space-y-1.5">
-                <p className="flex items-start gap-2 text-[14px] text-[var(--color-warm-gray)]">
-                  <MapPin size={16} className="mt-0.5 shrink-0" />
+
+              <div className="mt-5 flex items-center gap-2.5">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-sage)] text-[var(--color-olive)] shrink-0">
+                  <MapPin size={14} />
+                </div>
+                <p className="text-[14px] text-[var(--color-warm-gray)]">
                   {locations.johnStreet.address}
                 </p>
-                <p className="text-[14px] font-semibold text-[var(--color-ink)] pl-6">
+              </div>
+
+              <div className="mt-4 pl-[42px]">
+                <span className="inline-flex items-center rounded-full border border-[var(--color-olive)]/30 text-[var(--color-olive)] text-[12.5px] font-semibold tracking-wide px-3 py-1">
                   {locations.johnStreet.status}
-                </p>
+                </span>
               </div>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -86,38 +110,73 @@ export default function TwoLocations() {
                 </a>
               </div>
             </div>
+
+            <FieldMotif
+              className="absolute -bottom-2 -right-2 w-24 h-12 opacity-[0.07] pointer-events-none"
+              tone="olive"
+            />
           </div>
           </Reveal>
 
           {/* ---- Main Street ---- */}
           <Reveal direction="right">
-          <div className="group rounded-3xl bg-white border border-[var(--color-sage)] overflow-hidden shadow-[0_1px_2px_rgba(74,68,56,0.06)] hover:shadow-[0_24px_48px_-16px_rgba(74,68,56,0.18)] hover:-translate-y-1 transition-all duration-300">
+          <div
+            className="group relative rounded-3xl border border-[var(--color-sage)] overflow-hidden shadow-[0_1px_2px_rgba(74,68,56,0.06)] hover:shadow-[0_28px_56px_-24px_rgba(74,68,56,0.28)] hover:-translate-y-1.5 transition-all duration-300"
+            style={{
+              background:
+                "linear-gradient(160deg, #FFFFFF 0%, #FFFFFF 65%, var(--color-sage) 180%)",
+            }}
+          >
             {/* No confirmed exterior photo yet — an intentional, elegant
                 placeholder (not a real photo) rather than an empty box.
                 Swap for a real image the same way John Street's card works
                 once photography is confirmed. */}
             <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-sage)] flex items-center justify-center">
-              <FieldMotif className="w-40 h-16 opacity-80" tone="olive" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(60% 80% at 50% 45%, rgba(91,140,0,0.10) 0%, rgba(91,140,0,0) 70%)",
+                }}
+                aria-hidden="true"
+              />
+              <FieldMotif className="relative w-40 h-16 opacity-80" tone="olive" />
               <p className="absolute bottom-5 left-6 text-[13px] font-medium tracking-wide text-[var(--color-warm-gray)]">
                 Photography coming soon
               </p>
             </div>
 
-            <div className="p-8 sm:p-9">
+            <div
+              className="h-1 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--color-olive), var(--color-lime-mid))",
+              }}
+              aria-hidden="true"
+            />
+
+            <div className="relative p-8 sm:p-9">
               <h3 className="font-[var(--font-display)] text-2xl">
                 {locations.mainStreet.label}
               </h3>
               <p className="mt-1 text-[15px] font-medium text-[var(--color-olive)]">
                 {locations.mainStreet.role}
               </p>
-              <div className="mt-5 space-y-1.5">
-                <p className="flex items-start gap-2 text-[14px] text-[var(--color-warm-gray)]">
-                  <MapPin size={16} className="mt-0.5 shrink-0" />
+
+              <div className="mt-5 flex items-center gap-2.5">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-sage)] text-[var(--color-olive)] shrink-0">
+                  <MapPin size={14} />
+                </div>
+                <p className="text-[14px] text-[var(--color-warm-gray)]">
                   {locations.mainStreet.address}
                 </p>
-                <p className="text-[14px] font-semibold text-[var(--color-ink)] pl-6">
+              </div>
+
+              <div className="mt-4 pl-[42px]">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-olive)] text-white text-[12.5px] font-semibold tracking-wide px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-lime-mid)] animate-pulse" />
                   {locations.mainStreet.status}
-                </p>
+                </span>
               </div>
 
               <div className="mt-7 flex flex-wrap gap-3">

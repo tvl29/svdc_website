@@ -101,10 +101,33 @@ export const sameAcrossBoth = [
   "In-network insurance accepted",
 ];
 
-// Placeholder review — replace with a real, permissioned Google review before launch.
-export const featuredReview = {
-  quote:
-    "[PLACEHOLDER — replace with a real, permissioned Google review before launch. Do not fabricate patient testimonials.]",
-  author: "[Patient name — with consent]",
-  rating: 5,
-};
+// Placeholder reviews — replace each with a real, permissioned Google
+// review before launch. Do not fabricate patient testimonials. Add or
+// remove slots here as needed; the Trust section carousel adapts
+// automatically to however many are in this array.
+export const reviews = [
+  {
+    quote:
+      "[PLACEHOLDER 1 — replace with a real, permissioned Google review before launch. Do not fabricate patient testimonials.]",
+    author: "sample name",
+    rating: 5,
+  },
+  {
+    quote:
+      "[PLACEHOLDER 2 — replace with a real, permissioned Google review before launch. Do not fabricate patient testimonials.]",
+    author: "[Patient name — with consent]",
+    rating: 5,
+  },
+  {
+    quote:
+      "[PLACEHOLDER 3 — replace with a real, permissioned Google review before launch. Do not fabricate patient testimonials.]",
+    author: "[Patient name — with consent]",
+    rating: 5,
+  },
+  {
+    quote:
+      "[PLACEHOLDER 3 — replace with a real, permissioned Google review before launch. Do not fabricate patient testimonials.]",
+    author: "sample name",
+    rating: 4.5,
+  },
+];

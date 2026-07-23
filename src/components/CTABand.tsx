@@ -6,14 +6,35 @@ import Reveal from "./Reveal";
 export default function CTABand() {
   return (
     <section className="relative overflow-hidden bg-[var(--color-olive-deep)] py-24 sm:py-32">
-      {/* Ambient depth: soft radial glow behind the headline + large,
-          faint field-motif texture along the edges. Quiet, not decorative
-          clutter — this is the section's one "premium" flourish. */}
+      {/* Quiet top seam — same thin gradient line used at the top of the
+          footer, so the transition into this dark band feels intentional
+          rather than an abrupt color cut. */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(122,184,0,0.4), transparent)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Ambient depth: two layered glows (a wide soft one, a tighter one
+          right behind the pill) + faint field-motif texture along the
+          edges. Quiet, not decorative clutter — this is the section's
+          "premium" flourish. */}
       <div
         className="absolute inset-0"
         style={{
           background:
             "radial-gradient(60% 90% at 50% 20%, rgba(143,191,42,0.16) 0%, rgba(47,74,14,0) 70%)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(18% 30% at 50% 12%, rgba(143,191,42,0.22) 0%, rgba(47,74,14,0) 75%)",
         }}
         aria-hidden="true"
       />
@@ -28,7 +49,7 @@ export default function CTABand() {
 
       <Reveal direction="up">
       <div className="relative mx-auto max-w-3xl px-5 sm:px-8 text-center">
-        <span className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-[12px] font-medium tracking-[0.15em] uppercase text-[var(--color-lime-mid)]">
+        <span className="shimmer-pill inline-flex items-center rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-[12px] font-medium tracking-[0.15em] uppercase text-[var(--color-lime-mid)]">
           Opening November 2026
         </span>
 
@@ -36,7 +57,7 @@ export default function CTABand() {
           Be among the first through the new doors.
         </h2>
         <p className="mt-5 text-white/75 text-[15px] sm:text-base leading-relaxed max-w-xl mx-auto">
-          Book your visit today, at either location — the same trusted care,
+          Book your visit today, at either location, the same trusted care,
           now with more room to give it.
         </p>
 

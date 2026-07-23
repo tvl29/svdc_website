@@ -1,6 +1,7 @@
-import { HeartHandshake, Sparkles, ShieldCheck, Siren } from "lucide-react";
+import { HeartHandshake, Sparkles, ShieldCheck, Siren, ArrowUpRight } from "lucide-react";
 import { services } from "../data/content";
 import Reveal from "./Reveal";
+import FieldMotif from "./FieldMotif";
 
 const icons = [HeartHandshake, Sparkles, ShieldCheck, Siren];
 
@@ -17,26 +18,66 @@ export default function ServicesSection() {
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {services.map((service, i) => {
             const Icon = icons[i];
             // Left column slides in from the left, right column from the
             // right — matches the two-column grid so the reveal direction
             // makes spatial sense.
             const direction = i % 2 === 0 ? "left" : "right";
+            
             return (
               <Reveal key={service.title} direction={direction}>
-                <div className="group relative rounded-3xl bg-white p-8 sm:p-9 border border-transparent hover:border-[var(--color-olive)]/15 shadow-[0_1px_2px_rgba(74,68,56,0.05)] hover:shadow-[0_20px_40px_-18px_rgba(74,68,56,0.2)] hover:-translate-y-1 transition-all duration-300">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-sage)] text-[var(--color-olive)] group-hover:bg-[var(--color-olive)] group-hover:text-white transition-colors duration-300">
-                    <Icon size={20} strokeWidth={1.75} />
+                <div
+                  className="group relative rounded-3xl p-8 sm:p-10 border border-transparent hover:border-[var(--color-olive)]/20 shadow-[0_1px_2px_rgba(74,68,56,0.05)] hover:shadow-[0_28px_56px_-24px_rgba(74,68,56,0.28)] hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+                  style={{
+                    background:
+                      "linear-gradient(160deg, #FFFFFF 0%, #FFFFFF 65%, var(--color-sage) 180%)",
+                  }}
+                >
+                  {/* Thin brand accent bar — appears on hover, echoing the
+                      Trust card's top ribbon so the two sections read as
+                      part of the same design language. */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-1 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, var(--color-olive), var(--color-lime-mid))",
+                    }}
+                    aria-hidden="true"
+                  />
+
+                  {/* Large faint numeral — quiet editorial detail, sits
+                      behind everything else in the card */}
+                  <span
+                    className="absolute -top-3 right-4 font-[var(--font-display)] text-7xl text-[var(--color-olive)]/[0.06] select-none pointer-events-none"
+                    aria-hidden="true"
+                  >
+                  
+                  </span>
+
+                  <div className="relative flex items-start justify-between">
+                    <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-[var(--color-sage)] text-[var(--color-olive)] shadow-[0_1px_2px_rgba(74,68,56,0.06)] group-hover:bg-[var(--color-olive)] group-hover:text-white group-hover:shadow-[0_8px_20px_-6px_rgba(47,74,14,0.45)] transition-all duration-300">
+                      <Icon size={22} strokeWidth={1.75} />
+                    </div>
                   </div>
-                  <h3 className="mt-6 font-[var(--font-display)] text-xl">
+
+                  <h3 className="relative mt-6 font-[var(--font-display)] text-xl">
                     {service.title}
                   </h3>
-                  <p className="mt-2.5 text-[15px] leading-relaxed text-[var(--color-warm-gray)]">
+                  <p className="relative mt-2.5 text-[15px] leading-relaxed text-[var(--color-warm-gray)]">
                     {service.description}
                   </p>
-                  <div className="mt-6 h-px w-10 bg-[var(--color-olive)]/25 group-hover:w-16 transition-all duration-300" />
+
+                  <div className="relative mt-6 flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-olive)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    Learn more
+                    <ArrowUpRight size={14} strokeWidth={2.5} />
+                  </div>
+
+                  <FieldMotif
+                    className="absolute -bottom-2 -right-2 w-24 h-12 opacity-[0.07] pointer-events-none"
+                    tone="olive"
+                  />
                 </div>
               </Reveal>
             );

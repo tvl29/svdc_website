@@ -62,7 +62,7 @@ export default function Footer() {
             </p>
             <div className="mt-6 flex gap-2.5">
               <a
-                href="#"
+                href="https://web.facebook.com/SalinasValleyDentalCare"
                 aria-label="Facebook"
                 className="flex items-center justify-center w-9 h-9 rounded-full border border-white/15 text-white/70 hover:text-[var(--color-lime-mid)] hover:border-[var(--color-lime-mid)]/50 hover:-translate-y-0.5 transition-all duration-200"
               >
